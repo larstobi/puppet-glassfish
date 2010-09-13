@@ -18,6 +18,7 @@ Puppet::Type.newtype(:glassfish) do
 
   newparam(:adminuser) do
     desc "The internal Glassfish user asadmin uses. Default: admin"
+    defaultto "admin"
   end
 
   newparam(:passwordfile) do
