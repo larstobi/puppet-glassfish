@@ -5,7 +5,7 @@ Example of usage:
 glassfish {
     "mydomain":
         portbase => "4800",
-        adminuser => "gfish",
+        adminuser => "admin",
         passwordfile => "/home/gfish/.aspass",
         profile => "cluster",
         ensure => present;
