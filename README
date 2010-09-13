@@ -1,0 +1,15 @@
+This is a plugin for managing Glassfish domains.
+
+Example of usage:
+
+glassfish {
+    "mydomain":
+        portbase => "4800",
+        adminuser => "gfish",
+        passwordfile => "/home/gfish/.aspass",
+        profile => "cluster",
+        ensure => present;
+
+    "myolddomain":
+        ensure => absent;
+}
