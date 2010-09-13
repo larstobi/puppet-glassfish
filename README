@@ -1,6 +1,7 @@
-This is a plugin for managing Glassfish domains.
+This plugin for Puppet adds a resource type and provider for managing Glassfish
+domains by using the asadmin command line tool.
 
-Example of usage:
+Example:
 
 glassfish {
     "mydomain":
