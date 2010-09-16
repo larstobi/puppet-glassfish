@@ -1,7 +1,17 @@
 Puppet::Type.type(:glassfish).provide(:asadmin) do
   desc "Glassfish support."
 
-  commands :asadmin => "/opt/NSBglassfish/bin/asadmin"
+  def self.find_asadmin(path = ENV['PATH'])
+    path.split(":").each do |directory|
+      executable = directory + "/asadmin"
+      if File.executable? executable
+        debug executable
+        return executable
+      end
+    end
+    return ""
+  end
+  commands :asadmin => find_asadmin
 
   def create
     args = []
