@@ -9,14 +9,16 @@ Puppet::Type.newtype(:glassfish) do
   end
 
   newparam(:portbase) do
-    desc "The Glassfish domain port base."
+    desc "The Glassfish domain port base. Default: 4800"
+    defaultto "4800"
   end
 
   newparam(:profile) do
-    desc "Glassfish domain profile: cluster, devel, etc."
+    desc "Glassfish domain profile: cluster, devel, etc. Default: cluster"
+    defaultto "cluster"
   end
 
-  newparam(:adminuser) do
+  newparam(:asadminuser) do
     desc "The internal Glassfish user asadmin uses. Default: admin"
     defaultto "admin"
   end
@@ -27,6 +29,16 @@ Puppet::Type.newtype(:glassfish) do
     validate do |value|
       unless File.exists? value
         raise ArgumentError, "%s does not exists" % value
+      end
+    end
+  end
+
+  newparam(:user) do
+    desc "The user to run the command as."
+
+    validate do |user|
+      unless Puppet.features.root?
+        self.fail "Only root can execute commands as other users"
       end
     end
   end
