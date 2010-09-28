@@ -11,14 +11,35 @@ License: GPLv3
 Example:
 ========
 
+    Glassfish {
+        user => "gfish",
+        asadminuser => "admin",
+        passwordfile => "/home/gfish/.aspass", 
+    }   
+    
     glassfish {
         "mydomain":
-            portbase => "4800",
-            adminuser => "admin",
-            passwordfile => "/home/gfish/.aspass",
-            profile => "cluster",
+            ensure => present;
+
+       "devdomain":
+            portbase => "5000",
+            profile => "devel",
             ensure => present;
     
         "myolddomain":
             ensure => absent;
+    }
+    
+    Systemproperty {
+        user => "gfish",
+        asadminuser => "admin",
+        passwordfile => "/home/gfish/.aspass",
+    }
+    
+    systemproperty {
+        "search-url":
+            ensure => present,
+            portbase => "5000",
+            value => "http://www.google.com",
+            require => Glassfish["devdomain"];
     }
