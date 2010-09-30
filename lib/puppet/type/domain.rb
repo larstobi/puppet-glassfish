@@ -1,9 +1,9 @@
-Puppet::Type.newtype(:glassfish) do
+Puppet::Type.newtype(:domain) do
   @doc = "Manage Glassfish domains"
 
   ensurable
 
-  newparam(:domain) do
+  newparam(:name) do
     desc "The Glassfish domain name."
     isnamevar
   end

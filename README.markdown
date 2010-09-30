@@ -11,13 +11,13 @@ License: GPLv3
 Example:
 ========
 
-    Glassfish {
+    Domain {
         user => "gfish",
         asadminuser => "admin",
         passwordfile => "/home/gfish/.aspass", 
     }   
     
-    glassfish {
+    domain {
         "mydomain":
             ensure => present;
 
@@ -41,5 +41,5 @@ Example:
             ensure => present,
             portbase => "5000",
             value => "http://www.google.com",
-            require => Glassfish["devdomain"];
+            require => Domain["devdomain"];
     }

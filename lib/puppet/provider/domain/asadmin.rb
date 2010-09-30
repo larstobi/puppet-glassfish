@@ -1,7 +1,7 @@
 require 'puppet/provider/asadmin'
-Puppet::Type.type(:glassfish).provide(:asadmin,
+Puppet::Type.type(:domain).provide(:asadmin,
                                       :parent => Puppet::Provider::Asadmin) do
-  desc "Glassfish support."
+  desc "Glassfish domain support."
   commands :asadmin => "asadmin"
 
   def create
@@ -9,13 +9,13 @@ Puppet::Type.type(:glassfish).provide(:asadmin,
     args << "create-domain"
     args << "--profile" << @resource[:profile]
     args << "--portbase" << @resource[:portbase]
-    args << "--savelogin" << @resource[:domain]
+    args << "--savelogin" << @resource[:name]
     asadmin_exec(args)
   end
 
   def destroy
     args = []
-    args << "delete-domain" << @resource[:domain]
+    args << "delete-domain" << @resource[:name]
     asadmin_exec(args)
   end
 
@@ -23,7 +23,7 @@ Puppet::Type.type(:glassfish).provide(:asadmin,
     asadmin_exec(["list-domains"]).each do |line|
       if line.match(/^Name:\ /)
         domain = line.split(" ")[1]
-        return true if @resource[:domain] == domain
+        return true if @resource[:name] == domain
       end
     end
     return false
