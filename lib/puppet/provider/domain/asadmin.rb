@@ -1,7 +1,7 @@
 require 'puppet/provider/asadmin'
 Puppet::Type.type(:domain).provide(:asadmin,
-                                      :parent => Puppet::Provider::Asadmin) do
-  desc "Glassfish domain support."
+                                   :parent => Puppet::Provider::Asadmin) do
+  desc "Glassfish support."
   commands :asadmin => "asadmin"
 
   def create
@@ -21,10 +21,9 @@ Puppet::Type.type(:domain).provide(:asadmin,
 
   def exists?
     asadmin_exec(["list-domains"]).each do |line|
-      if line.match(/^Name:\ /)
-        domain = line.split(" ")[1]
-        return true if @resource[:name] == domain
-      end
+      domain = line.split(" ")[0] if line.match(/running/) # Glassfish > 3.0.1
+      domain = line.split(" ")[1] if line.match(/^Name:\ /) # Glassfish =< 3.0.1
+      return true if @resource[:name] == domain
     end
     return false
   end

@@ -4,11 +4,6 @@ Puppet::Type.type(:systemproperty).provide(:asadmin, :parent =>
   desc "Glassfish system-properties support."
   commands :asadmin => "asadmin"
 
-  def escape(value)
-    # Add three backslashes to escape the colon
-    return value.gsub(/:/) { '\\\\\\:' }
-  end
-
   def create
     args = []
     args << "create-system-properties"
@@ -24,7 +19,7 @@ Puppet::Type.type(:systemproperty).provide(:asadmin, :parent =>
 
   def exists?
     asadmin_exec(["list-system-properties"]).each do |line|
-      if line.match(/^[A-Za-z0-9]+=/)
+      if line.match(/^[^=]+=/)
         key, value = line.split("=")
         return true if @resource[:name] == key
       end
