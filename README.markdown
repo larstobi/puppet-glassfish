@@ -43,3 +43,29 @@ Example:
             value => "http://www.google.com",
             require => Domain["devdomain"];
     }
+
+   Jdbcconnectionpool {
+        ensure => present,
+        user => "gfish",
+        asadminuser => "admin",
+        passwordfile => "/home/gfish/.aspass",
+        datasourceclassname => "com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource",
+        resourcetype => "javax.sql.ConnectionPoolDataSource",
+        require => Glassfish["mydomain"],
+    }
+
+    jdbcconnectionpool {
+        "MyPool":
+            properties => "password=mYPasS:user=myuser:url=jdbc\:mysql\://host.ex.com\:3306/mydatabase:useUnicode=true:characterEncoding=utf8:characterResultSets=utf:autoReconnect=true:autoReconnectForPools=true";
+    }
+
+    Jdbcresource {
+        ensure => present,
+        user => "gfish",
+        passwordfile => "/home/gfish/.aspass",
+    }
+
+    jdbcresource {
+        "jdbc/MyPool":
+            connectionpool => "MyPool",
+    }
