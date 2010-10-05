@@ -2,7 +2,8 @@ Puppet Glassfish Domain type
 ============================
 
 This plugin for Puppet adds resource types and providers for managing Glassfish
-domains and their system-properties by using the asadmin command line tool.
+domains, system-properties, jdbc-connection-pools and jdbc-resources and 
+application deployment by using the asadmin command line tool.
 
 Copyright - Lars Tobias Skjong-Børsting <larstobi@conduct.no>
 
