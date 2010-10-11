@@ -85,3 +85,13 @@ Example:
             source => "/home/gfish/hello.war",
             require => Application["pluto"];
     }
+    
+    Jvmoption {
+        ensure => present,
+        user => "gfish",
+        passwordfile => "/home/gfish/.aspass",
+    }
+    
+    jvmoption {
+        ["-DjvmRoute=01", "-server":
+    }
