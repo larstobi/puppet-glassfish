@@ -8,7 +8,7 @@ class Puppet::Provider::Asadmin < Puppet::Provider
     passed_args.each { |arg| args << arg }
     exec_args = ""
     args.each { |arg| exec_args += arg += " " }
-    command = "asadmin #{exec_args}"
+    command = "asadmin --terse #{exec_args}"
     command = "su - #{@resource[:user]} -c \"#{command}\"" if @resource[:user]
     self.debug command
     result = `#{command}`
