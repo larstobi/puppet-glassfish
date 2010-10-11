@@ -93,5 +93,5 @@ Example:
     }
     
     jvmoption {
-        ["-DjvmRoute=01", "-server":
+        ["-DjvmRoute=01", "-server"]:
     }
