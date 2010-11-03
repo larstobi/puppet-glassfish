@@ -9,6 +9,15 @@ Copyright - Lars Tobias Skjong-Børsting <larstobi@conduct.no>
 
 License: GPLv3
 
+Installation:
+=============
+This plugin uses the executable "asadmin". For this plugin to work, the
+folder where the executable is located must exist in the PATH environment
+variable.
+
+Place the "lib" folder and it's subfolders in the module path,
+i.e. /etc/puppet/modules/glassfish/lib/...
+
 Example:
 ========
 
