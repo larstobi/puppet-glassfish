@@ -6,7 +6,7 @@ Puppet::Type.type(:application).provide(:asadmin, :parent =>
 
   def create
     args = []
-    args << "deploy"
+    args << "deploy" << "--precompilejsp=true"
     unless @resource[:contextroot] == ""
       args << "--contextroot" << @resource[:contextroot]
     end
