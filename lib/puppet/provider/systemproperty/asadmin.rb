@@ -7,13 +7,13 @@ Puppet::Type.type(:systemproperty).provide(:asadmin, :parent =>
   def create
     args = []
     args << "create-system-properties"
-    args << @resource[:name] + "=" + escape(@resource[:value])
+    args << "'" + @resource[:name] + "=" + escape(@resource[:value]) + "'"
     asadmin_exec(args)
   end
 
   def destroy
     args = []
-    args << "delete-system-property" << @resource[:name]
+    args << "delete-system-property" << "'" + escape(@resource[:name]) + "'"
     asadmin_exec(args)
   end
 

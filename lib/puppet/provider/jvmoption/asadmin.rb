@@ -7,13 +7,13 @@ Puppet::Type.type(:jvmoption).provide(:asadmin, :parent =>
   def create
     args = []
     args << "create-jvm-options"
-    args << @resource[:name]
+    args << "'" + escape(@resource[:name]) + "'"
     asadmin_exec(args)
   end
 
   def destroy
     args = []
-    args << "delete-jvm-options" << @resource[:name]
+    args << "delete-jvm-options" << "'" + escape(@resource[:name]) + "'"
     asadmin_exec(args)
   end
 

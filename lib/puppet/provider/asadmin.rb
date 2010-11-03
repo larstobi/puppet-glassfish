@@ -18,6 +18,6 @@ class Puppet::Provider::Asadmin < Puppet::Provider
 
   def escape(value)
     # Add three backslashes to escape the colon
-    return value.gsub(/:/) { '\\\\\\:' }
+    return value.gsub(/:/) { '\\:' }
   end
 end
