@@ -2,8 +2,8 @@ Puppet Glassfish Domain type
 ============================
 
 This plugin for Puppet adds resource types and providers for managing Glassfish
-domains, system-properties, jdbc-connection-pools and jdbc-resources and 
-application deployment by using the asadmin command line tool.
+domains, system-properties, jdbc-connection-pools, jdbc-resources, auth-realms
+and application deployment by using the asadmin command line tool.
 
 Copyright - Lars Tobias Skjong-Børsting <larstobi@conduct.no>
 
@@ -94,4 +94,19 @@ Example:
     
     jvmoption {
         ["-DjvmRoute=01", "-server"]:
+    }
+
+    authrealm {
+        ensure => present,
+        user => "gfish",
+        asadminuser => "admin",
+        passwordfile => "/Users/larstobi/.aspass",
+    }
+    
+    authrealm {
+        "agentRealm":
+            ensure => present,
+            classname => "com.sun.identity.agents.appserver.v81.AmASRealm",
+            properties => ["jaas-context=agentRealm:foo=bar"],
+            require => Domain["mydomain"];
     }
