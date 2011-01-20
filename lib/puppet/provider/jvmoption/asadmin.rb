@@ -19,6 +19,7 @@ Puppet::Type.type(:jvmoption).provide(:asadmin, :parent =>
 
   def exists?
     asadmin_exec(["list-jvm-options"]).each do |line|
+      line.sub!(/-XX: ([^\ ]+)/, '-XX:+\1')
       if line.match(/^-.[^\ ]+/)
         return true if @resource[:name] == line.chomp
       end
