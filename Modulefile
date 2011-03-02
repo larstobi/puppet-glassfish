@@ -1,0 +1,8 @@
+name    'larstobi-glassfish'
+version '0.3'
+source 'git://github.com/larstobi/puppet-glassfish.git'
+author 'larstobi'
+license 'GPLv3'
+summary 'A resource type to manage Glassfish domains, system-properties, jdbc-connection-pools and jdbc-resources and application deployment.'
+description 'A resource type to manage Glassfish domains, system-properties, jdbc-connection-pools and jdbc-resources and application deployment.'
+project_page 'http://github.com/larstobi/puppet-glassfish'
