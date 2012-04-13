@@ -1,5 +1,5 @@
 name    'larstobi-glassfish'
-version '0.3'
+version '0.0.3'
 source 'git://github.com/larstobi/puppet-glassfish.git'
 author 'larstobi'
 license 'GPLv3'
