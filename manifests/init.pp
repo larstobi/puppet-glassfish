@@ -95,7 +95,7 @@ class glassfish {
     ['-DjvmRoute=01', '-server']:
   }
 
-  authrealm {
+  Authrealm {
     ensure       => present,
     user         => 'gfish',
     asadminuser  => 'admin',
