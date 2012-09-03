@@ -1,5 +1,5 @@
 require 'puppet/provider/asadmin'
-Puppet::Type.type(:jdbcconnectionpool).provide(:asadmin, :parent => 
+Puppet::Type.type(:jdbcconnectionpool).provide(:asadmin, :parent =>
                                            Puppet::Provider::Asadmin) do
   desc "Glassfish JDBC connection pool support."
   commands :asadmin => "asadmin"
