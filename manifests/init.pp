@@ -22,9 +22,9 @@ class glassfish {
       ensure => present;
 
     'devdomain':
+      ensure   => present,
       portbase => '5000',
-      profile  => 'devel',
-      ensure   => present;
+      profile  => 'devel';
 
     'myolddomain':
       ensure => absent;
