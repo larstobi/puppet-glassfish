@@ -12,8 +12,8 @@
 #
 class glassfish {
   Domain {
-    user => 'gfish',
-    asadminuser => 'admin',
+    user         => 'gfish',
+    asadminuser  => 'admin',
     passwordfile => '/home/gfish/.aspass',
   }
 
@@ -23,35 +23,35 @@ class glassfish {
 
     'devdomain':
       portbase => '5000',
-      profile => 'devel',
-      ensure => present;
+      profile  => 'devel',
+      ensure   => present;
 
     'myolddomain':
       ensure => absent;
   }
 
   Systemproperty {
-    user => 'gfish',
-    asadminuser => 'admin',
+    user         => 'gfish',
+    asadminuser  => 'admin',
     passwordfile => '/home/gfish/.aspass',
   }
 
   systemproperty {
     'search-url':
-      ensure => present,
+      ensure   => present,
       portbase => '5000',
-      value => 'http://www.google.com',
-      require => Domain['devdomain'];
+      value    => 'http://www.google.com',
+      require  => Domain['devdomain'];
   }
 
   Jdbcconnectionpool {
-    ensure => present,
-    user => 'gfish',
-    asadminuser => 'admin',
-    passwordfile => '/home/gfish/.aspass',
+    ensure              => present,
+    user                => 'gfish',
+    asadminuser         => 'admin',
+    passwordfile        => '/home/gfish/.aspass',
     datasourceclassname => 'com.mysql.jdbc.jdbc2.optional.MysqlConnectionPoolDataSource',
-    resourcetype => 'javax.sql.ConnectionPoolDataSource',
-    require => Glassfish['mydomain'],
+    resourcetype        => 'javax.sql.ConnectionPoolDataSource',
+    require             => Glassfish['mydomain'],
   }
 
   jdbcconnectionpool {
@@ -60,8 +60,8 @@ class glassfish {
   }
 
   Jdbcresource {
-    ensure => present,
-    user => 'gfish',
+    ensure       => present,
+    user         => 'gfish',
     passwordfile => '/home/gfish/.aspass',
   }
 
@@ -71,8 +71,8 @@ class glassfish {
   }
 
   Application {
-    ensure => present,
-    user => 'gfish',
+    ensure       => present,
+    user         => 'gfish',
     passwordfile => '/home/gfish/.aspass',
   }
 
@@ -81,13 +81,13 @@ class glassfish {
       source => '/home/gfish/pluto.war';
 
     'myhello':
-      source => '/home/gfish/hello.war',
+      source  => '/home/gfish/hello.war',
       require => Application['pluto'];
   }
 
   Jvmoption {
-    ensure => present,
-    user => 'gfish',
+    ensure       => present,
+    user         => 'gfish',
     passwordfile => '/home/gfish/.aspass',
   }
 
@@ -96,17 +96,17 @@ class glassfish {
   }
 
   authrealm {
-    ensure => present,
-    user => 'gfish',
-    asadminuser => 'admin',
+    ensure       => present,
+    user         => 'gfish',
+    asadminuser  => 'admin',
     passwordfile => '/Users/larstobi/.aspass',
   }
 
   authrealm {
     'agentRealm':
-      ensure => present,
-      classname => 'com.sun.identity.agents.appserver.v81.AmASRealm',
+      ensure     => present,
+      classname  => 'com.sun.identity.agents.appserver.v81.AmASRealm',
       properties => ['jaas-context=agentRealm:foo=bar'],
-      require => Domain['mydomain'];
+      require    => Domain['mydomain'];
   }
 }
