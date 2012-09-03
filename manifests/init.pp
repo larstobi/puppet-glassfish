@@ -29,7 +29,7 @@ class glassfish {
     "myolddomain":
       ensure => absent;
   }
-  
+
   Systemproperty {
     user => "gfish",
     asadminuser => "admin",
