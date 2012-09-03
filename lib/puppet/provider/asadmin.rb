@@ -2,6 +2,7 @@ class Puppet::Provider::Asadmin < Puppet::Provider
   def asadmin_exec(passed_args)
     port = @resource[:portbase].to_i + 48
     args = []
+    @resource[:domaindir] && args << "--domaindir" << @resource[:domaindir]
     args << "--port" << port.to_s
     args << "--user" << @resource[:asadminuser]
     args << "--passwordfile" << @resource[:passwordfile]

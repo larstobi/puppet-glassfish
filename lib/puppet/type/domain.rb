@@ -23,6 +23,11 @@ Puppet::Type.newtype(:domain) do
     defaultto "4800"
   end
 
+  newparam(:domaindir) do
+    desc "Specify domaindir to manage domains and resources in a different folder than under glassfish/domains/."
+    defaultto nil
+  end
+
   newparam(:profile) do
     desc "Glassfish domain profile: cluster, devel, etc. Default: cluster"
     defaultto "cluster"

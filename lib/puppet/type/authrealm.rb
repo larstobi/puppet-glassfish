@@ -25,6 +25,11 @@ Puppet::Type.newtype(:authrealm) do
     defaultto "4800"
   end
 
+  newparam(:domaindir) do
+    desc "Specify domaindir to manage domains and resources in a different folder than under glassfish/domains/."
+    defaultto nil
+  end
+
   newparam(:asadminuser) do
     desc "The internal Glassfish user asadmin uses. Default: admin"
     defaultto "admin"
