@@ -56,4 +56,9 @@ Puppet::Type.newtype(:domain) do
       end
     end
   end
+
+  newparam(:template) do
+    desc "Path to Glassfish template to use when creating the domain"
+  end
+
 end
