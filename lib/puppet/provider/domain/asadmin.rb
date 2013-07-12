@@ -10,6 +10,7 @@ Puppet::Type.type(:domain).provide(:asadmin,
     args << "--profile" << @resource[:profile]
     args << "--portbase" << @resource[:portbase]
     args << "--savelogin" << @resource[:name]
+    args << "--template" << @resource[:template] if @resource[:template]
     asadmin_exec(args)
     start_domain if @resource[:startoncreate]
   end
