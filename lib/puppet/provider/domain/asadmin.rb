@@ -11,16 +11,17 @@ Puppet::Type.type(:domain).provide(:asadmin,
     args << "--portbase" << @resource[:portbase]
     args << "--savelogin" << @resource[:name]
     asadmin_exec(args)
+    start_domain if @resource[:startoncreate]
+  end
 
-    if @resource[:startoncreate]
-      asadmin_exec(["start-domain", @resource[:name]])
-      if @resource[:smf]
-        asadmin_exec(["create-service", "--name", @resource[:name]])
-        asadmin_exec(["stop-domain", @resource[:name]])
-        `svccfg -s @resource[:name] setprop start/user = astring: @resource[:user]`
-        `svccfg -s @resource[:name] setprop stop/user = astring: @resource[:user]`
-        `svcadm refresh @resource[:name]`
-      end
+  def start_domain
+    asadmin_exec(["start-domain", @resource[:name]])
+    if @resource[:smf]
+      asadmin_exec(["create-service", "--name", @resource[:name]])
+      asadmin_exec(["stop-domain", @resource[:name]])
+      `svccfg -s @resource[:name] setprop start/user = astring: @resource[:user]`
+      `svccfg -s @resource[:name] setprop stop/user = astring: @resource[:user]`
+      `svcadm refresh @resource[:name]`
     end
   end
 
